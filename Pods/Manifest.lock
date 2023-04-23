@@ -1,0 +1,59 @@
+PODS:
+  - Alamofire (5.0.0.beta.1)
+  - Differentiator (3.1.0)
+  - PKHUD (5.3.0)
+  - RxCocoa (4.4.1):
+    - RxSwift (~> 4.0)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.0.0)
+  - RxSwiftExt (3.4.0):
+    - RxSwiftExt/Core (= 3.4.0)
+    - RxSwiftExt/RxCocoa (= 3.4.0)
+  - RxSwiftExt/Core (3.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwiftExt/RxCocoa (3.4.0):
+    - RxCocoa (~> 4.0)
+    - RxSwiftExt/Core
+
+DEPENDENCIES:
+  - "Alamofire (from `git@github.com:Alamofire/Alamofire.git`, branch `alamofire5`)"
+  - PKHUD (~> 5.0)
+  - RxCocoa
+  - RxDataSources
+  - RxSwift
+  - RxSwiftExt
+
+SPEC REPOS:
+  trunk:
+    - Differentiator
+    - PKHUD
+    - RxCocoa
+    - RxDataSources
+    - RxSwift
+    - RxSwiftExt
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: alamofire5
+    :git: "git@github.com:Alamofire/Alamofire.git"
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 2c99a6691dac40f03ef9f9e89aaf2eb751843393
+    :git: "git@github.com:Alamofire/Alamofire.git"
+
+SPEC CHECKSUMS:
+  Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
+  RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxSwift: fd680d75283beb5e2559486f3c0ff852f0d35334
+  RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
+
+PODFILE CHECKSUM: 944084764d2c14689a1fd118a6567ae391ddfeb7
+
+COCOAPODS: 1.12.1

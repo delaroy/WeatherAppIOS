@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  WeatherApp
 //
-//  Created by Touch and Pay Technologies on 19/04/2023.
+//  Created by Bamidele Oguntuga.
 //
 
 import UIKit
