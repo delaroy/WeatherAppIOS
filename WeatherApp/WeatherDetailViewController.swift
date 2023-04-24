@@ -37,7 +37,7 @@ class WeatherDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .dark
+        //overrideUserInterfaceStyle = .dark
         if traitCollection.userInterfaceStyle == .dark {
             navigationController?.navigationBar.backgroundColor = UIColor.black
             navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
@@ -92,10 +92,12 @@ class WeatherDetailViewController: UIViewController {
                         self.title = weatherRes.name
                         self.weatherSummary.text = weatherRes.weather[0].main
                         let degree = NSString(format:"23%@", "\u{00B0}") as String
+                        let weatherTemp = (weatherRes.main.temp).round(to: 2)
+                    
                         if units == "metric" {
-                            self.temperature.text = String(weatherRes.main.temp) + degree + "C"
+                            self.temperature.text = "\(weatherTemp)" + degree + "C"
                         } else {
-                            self.temperature.text = String(weatherRes.main.temp) + degree + "F"
+                            self.temperature.text = "\(weatherTemp)" + degree + "F"
                         }
                         self.minTemp.text = String(weatherRes.main.tempMin)
                         self.maxTemp.text = String(weatherRes.main.tempMax)
@@ -122,6 +124,7 @@ class WeatherDetailViewController: UIViewController {
                             print("Unknown error:", error)
                         }
                         self.setLoadingHud(visible: false)
+                        self.showAlert(withTitle: "Not Found", withMessage: "Sorry we could not find the city Please try again with correct entry")
                     })
                     .disposed(by: disposeBag)
     }
@@ -148,6 +151,20 @@ class WeatherDetailViewController: UIViewController {
                     break
                 }
     }
+    
+    func showAlert(withTitle title: String, withMessage message:String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+       
+        let ok = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+               UIAlertAction in
+                self.navigationController?.popViewController(animated: true)
+           }
+        alert.addAction(ok)
+        DispatchQueue.main.async(execute: {
+            self.present(alert, animated: true)
+        })
+    }
+    
 }
 
 extension UIImage {
@@ -157,8 +174,15 @@ extension UIImage {
     do {
       self.init(data: try Data(contentsOf: url))
     } catch {
-      print("Cannot load image from url: \(url) with error: \(error)")
-      return nil
+        self.init(named: "chevron.png")
+        print("Cannot load image from url: \(url) with error: \(error)")
     }
   }
+}
+
+extension Double {
+    func round(to places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
 }

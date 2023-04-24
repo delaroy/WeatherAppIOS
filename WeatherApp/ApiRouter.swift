@@ -10,7 +10,7 @@ import Alamofire
 
 enum ApiRouter: URLRequestConvertible {
     
-    //The endpoint name we'll call later
+    //The endpoints
     case getWeatherResult(lat: Double, lon: Double, appid: String, units: String)
     case getGeoCode(cityName: String, appid: String)
     

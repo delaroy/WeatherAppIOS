@@ -21,10 +21,11 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var longitudeTextField: UITextField!
     @IBOutlet weak var cityNameTextField: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Welcome"
-        overrideUserInterfaceStyle = .dark
+        //overrideUserInterfaceStyle = .dark
         if traitCollection.userInterfaceStyle == .dark {
             navigationController?.navigationBar.backgroundColor = UIColor.black
             navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
@@ -33,18 +34,16 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.objects.append("Delhi")
         self.objects.append("Berlin")
         self.objects.append("Toronto")
-        // Do any additional setup after loading the view.
         
         tableView.delegate = self
         tableView.dataSource = self
         
-    
     }
     
     private func setLoadingHud(visible: Bool) {
             PKHUD.sharedHUD.contentView = PKHUDSystemActivityIndicatorView()
             visible ? PKHUD.sharedHUD.show(onView: view) : PKHUD.sharedHUD.hide()
-        }
+    }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,7 +68,6 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if (segue.identifier == "showView")
@@ -82,7 +80,6 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             weatherDetail.cityName = titleString
             
-            
             self.tableView.deselectRow(at: indexPath, animated: true)
         }
         
@@ -90,19 +87,16 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
             let lat = latitudeTextField.text ?? ""
             let lon = longitudeTextField.text ?? ""
             let city = cityNameTextField.text ?? ""
-            // pass data to next view controller
+            
             let vc : WeatherDetailViewController = segue.destination as! WeatherDetailViewController
                 vc.cityName = city
                 vc.latitudeSegue = lat
                 vc.longitudeSegue = lon
             }
-        
     }
-    
     
     func tableView(_ tableView: UITableView,
                             estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat{
-       // Choose an appropriate default cell size.
     
        var cellSize = UITableView.automaticDimension
             
@@ -127,8 +121,6 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func resetForm() {
-        searchBtn.isEnabled = false
-        
         latitudeTextField.text = ""
         longitudeTextField.text = ""
         cityNameTextField.text = ""
@@ -158,6 +150,7 @@ class WeatherViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else if(lon.isEmpty) {
             showAlert(withTitle: "Required field", withMessage: "Longitude is required")
         } else {
+            performSegue(withIdentifier: "showBtn", sender: sender)
             resetForm()
         }
          

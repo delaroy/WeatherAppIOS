@@ -23,7 +23,7 @@ class ApiClient {
     //-------------------------------------------------------------------------------------------------
     //MARK: - The request function to get results in an Observable
     private static func request<T: Codable> (_ urlConvertible: URLRequestConvertible) -> Observable<T> {
-        //Create an RxSwift observable, which will be the one to call the request when subscribed to
+        //RxSwift observable, which will be the one to call the request when subscribed to
         return Observable<T>.create { observer in
             //Trigger the HttpRequest using AlamoFire (AF)
             let request = AF.request(urlConvertible).responseDecodable { (response: DataResponse<T>) in
